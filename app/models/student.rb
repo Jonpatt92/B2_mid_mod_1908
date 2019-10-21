@@ -5,4 +5,8 @@ class Student < ApplicationRecord
   validates_presence_of :name,
                         :cohort,
                         :age
+
+  validates_numericality_of :age, only_integer: true
+  validates_numericality_of :cohort, only_integer: true
+
 end
