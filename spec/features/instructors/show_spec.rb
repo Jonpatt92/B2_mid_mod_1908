@@ -16,9 +16,10 @@ RSpec.describe "Instructors' show page" do
 
   it "Shows me each instructors info" do
     visit '/students'
-    expect(page).to have_link(@instructor_1.name)
-    expect(page).to have_link(@instructor_2.name)
-    click_link "#{@instructor_1.name}"
+    within "#student-#{@student_1.id}" do
+      expect(page).to have_link(@instructor_1.name)
+      click_link "#{@instructor_1.name}"
+    end
 
     expect(current_path).to eq("/instructors/#{@instructor_1.id}")
     expect(page).to have_content("Meghan")
@@ -26,5 +27,6 @@ RSpec.describe "Instructors' show page" do
     expect(page).to have_content("Mary")
     expect(page).to have_content("Michael")
     expect(page).to have_content("Average Student Age: 27")
+
   end
 end

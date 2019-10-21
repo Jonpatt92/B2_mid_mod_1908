@@ -20,7 +20,18 @@ RSpec.describe "When I visit the student index page" do
     expect(page).to have_content("Cohort: 1908")
     expect(page).to have_content("Cohort: 1909")
     expect(page).to have_content("Cohort: 1910")
-    expect(page).to have_link(@instructor_1.name)
-    expect(page).to have_link(@instructor_2.name)
+
+
+    within "#student-#{@student_1.id}" do
+      expect(page).to have_link(@instructor_1.name)
+    end
+
+    within "#student-#{@student_2.id}" do
+      expect(page).to have_link(@instructor_1.name)
+    end
+
+    within "#student-#{@student_3.id}" do
+      expect(page).to have_link(@instructor_2.name)
+    end
   end
 end
